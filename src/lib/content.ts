@@ -104,7 +104,7 @@ export const team = [
     name: "Daniel Barnard",
     role: "Founder & Operations Manager",
     bio: "Creative professional with a background in design, marketing, and sales. Now specialising in growth operations.",
-    image: "/team/daniel.png",
+    image: "/team/james.png",
     socials: [
       {
         type: "linkedin",
@@ -127,7 +127,7 @@ export const team = [
     name: "James Rice",
     role: "Sales Manager",
     bio: "A killer blend of experience in real estate, high-ticket sales, and live events. Driving premium revenue growth.",
-    image: "/team/james.png",
+    image: "/team/daniel.png",
     socials: [
       {
         type: "instagram",

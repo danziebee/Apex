@@ -86,14 +86,13 @@ export function PartnershipFolders() {
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className={`relative rounded-t-[1.25rem] px-6 py-3 text-sm font-semibold md:px-8 md:py-3.5 md:text-base ${
                   isActive
-                    ? tabBlue
-                      ? "z-10 border border-b-0 border-white/[0.12] bg-white/[0.08] text-white backdrop-blur-xl"
-                      : "z-10 border border-b-0 border-white/[0.15] bg-white/[0.12] text-white backdrop-blur-xl"
-                    : tabBlue
-                      ? "border border-b-0 border-white/[0.06] bg-white/[0.03] text-white/60 backdrop-blur-md"
-                      : "border border-b-0 border-white/[0.06] bg-white/[0.03] text-white/60 backdrop-blur-md"
+                    ? "z-10 text-white bg-white/[0.08] backdrop-blur-xl"
+                    : "text-white/50 bg-white/[0.02] backdrop-blur-md hover:text-white/70"
                 }`}
                 style={{
+                  boxShadow: isActive
+                    ? "inset 0 0 0 1px rgba(255,255,255,0.1), inset 1.8px 3px 0 -2px rgba(255,255,255,0.15), inset -0.3px -1px 4px 0 rgba(0,0,0,0.08)"
+                    : "inset 0 0 0 1px rgba(255,255,255,0.05)",
                   marginBottom: isActive ? "-1px" : "-2px",
                 }}
               >
@@ -106,16 +105,35 @@ export function PartnershipFolders() {
         {/* Folder body */}
         <motion.div
           role="tabpanel"
-          className={`relative overflow-hidden rounded-[2rem] rounded-tl-none px-8 py-9 md:px-11 md:py-11 ${
+          className={`relative overflow-hidden rounded-[2rem] rounded-tl-none px-8 py-9 md:px-11 md:py-11 text-white ${
             isBlue
-              ? "border border-white/[0.1] bg-white/[0.06] text-white shadow-folder backdrop-blur-xl"
-              : "border border-white/[0.12] bg-white/[0.09] text-white shadow-folder backdrop-blur-xl"
+              ? "bg-white/[0.05]"
+              : "bg-white/[0.08]"
           }`}
+          style={{
+            backdropFilter: "blur(32px) saturate(160%)",
+            WebkitBackdropFilter: "blur(32px) saturate(160%)",
+            boxShadow: [
+              "inset 0 0 0 1px rgba(255, 255, 255, 0.1)",
+              "inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.2)",
+              "inset -2px -2px 0 -2px rgba(255, 255, 255, 0.12)",
+              "inset -3px -8px 1px -6px rgba(255, 255, 255, 0.06)",
+              "inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.15)",
+              "0 1px 5px rgba(0, 0, 0, 0.1)",
+              "0 40px 100px rgba(0, 0, 0, 0.35)",
+            ].join(", "),
+          }}
         >
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background: `radial-gradient(520px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(${isBlue ? "0, 122, 255" : "100, 160, 255"}, 0.15), transparent 52%)`,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: `radial-gradient(400px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(255, 255, 255, 0.08), transparent 50%)`,
             }}
           />
           <div
