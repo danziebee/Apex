@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --apex-black: #000000;
+  --apex-surface: #050a12;
+  --apex-blue: #007aff;
+  --apex-blue-bright: #3b82f6;
+  --apex-muted: #94a3b8;
+  --apex-frost: rgba(230, 240, 248, 0.92);
+  --apex-frost-text: #1a2d4a;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--apex-black);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-apex-blue to-apex-blue-bright bg-clip-text text-transparent;
+  }
+
+  .glass-panel {
+    @apply border border-white/[0.08] bg-white/[0.04] shadow-glass backdrop-blur-glass;
+  }
+
+  .glass-panel-strong {
+    @apply border border-white/[0.12] bg-white/[0.07] shadow-glass backdrop-blur-glass;
+  }
+
+  .glow-orb {
+    background: radial-gradient(
+      circle,
+      rgba(0, 122, 255, 0.35) 0%,
+      rgba(26, 79, 214, 0.12) 40%,
+      transparent 70%
+    );
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Shared layout — matches Framework column */
+  .apex-section {
+    @apply py-24 md:py-32;
+  }
+
+  /* Outer shell — one horizontal padding for the whole page */
+  .apex-container-wide {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  /* Text column — same left edge as Framework, not re-centered */
+  .apex-container {
+    @apply w-full max-w-3xl text-left;
+  }
+
+  /* Slow drifting blue glow */
+  .ambient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    will-change: transform;
+  }
+
+  .ambient-blob-1 {
+    top: 8%;
+    right: -12%;
+    width: min(55vw, 520px);
+    height: min(55vw, 520px);
+    background: radial-gradient(
+      circle,
+      rgba(0, 122, 255, 0.14) 0%,
+      rgba(26, 79, 214, 0.06) 45%,
+      transparent 72%
+    );
+    animation: ambient-swim-1 32s ease-in-out infinite;
+  }
+
+  .ambient-blob-2 {
+    bottom: 18%;
+    left: -18%;
+    width: min(50vw, 480px);
+    height: min(50vw, 480px);
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.1) 0%,
+      rgba(0, 122, 255, 0.04) 50%,
+      transparent 70%
+    );
+    animation: ambient-swim-2 40s ease-in-out infinite;
+  }
+
+  .ambient-blob-3 {
+    top: 42%;
+    left: 28%;
+    width: min(42vw, 400px);
+    height: min(42vw, 400px);
+    background: radial-gradient(
+      circle,
+      rgba(0, 122, 255, 0.08) 0%,
+      transparent 65%
+    );
+    animation: ambient-swim-3 36s ease-in-out infinite;
+  }
+
+  @keyframes ambient-swim-1 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-6%, 8%) scale(1.06);
+    }
+    66% {
+      transform: translate(4%, -5%) scale(0.96);
+    }
+  }
+
+  @keyframes ambient-swim-2 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    40% {
+      transform: translate(10%, -6%) scale(1.08);
+    }
+    70% {
+      transform: translate(-5%, 4%) scale(0.94);
+    }
+  }
+
+  @keyframes ambient-swim-3 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translate(-8%, 6%) scale(1.1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ambient-blob {
+    animation: none !important;
+  }
+}
