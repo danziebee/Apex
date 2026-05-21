@@ -44,13 +44,13 @@ export function TeamSection() {
       {team.map((member) => (
         <GlimmerCard key={member.name} className="p-4 md:p-5">
           <div className="flex items-center gap-4 md:gap-5">
-            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/10 md:h-[4.5rem] md:w-[4.5rem]">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10 md:h-24 md:w-24">
               <Image
                 src={member.image}
                 alt={member.name}
                 fill
                 className="object-cover object-top"
-                sizes="72px"
+                sizes="96px"
               />
             </div>
             <div className="min-w-0 flex-1">

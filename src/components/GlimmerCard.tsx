@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 type GlimmerCardProps = {
@@ -8,10 +8,14 @@ type GlimmerCardProps = {
   className?: string;
 };
 
+const TILT_MAX = 8;
+
 export function GlimmerCard({ children, className = "" }: GlimmerCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(50);
   const y = useMotionValue(50);
+  const rotateX = useSpring(0, { stiffness: 300, damping: 24 });
+  const rotateY = useSpring(0, { stiffness: 300, damping: 24 });
 
   const background = useMotionTemplate`radial-gradient(520px circle at ${x}% ${y}%, rgba(0, 122, 255, 0.18), transparent 42%)`;
 
@@ -19,33 +23,42 @@ export function GlimmerCard({ children, className = "" }: GlimmerCardProps) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    x.set(((e.clientX - rect.left) / rect.width) * 100);
-    y.set(((e.clientY - rect.top) / rect.height) * 100);
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    x.set(px * 100);
+    y.set(py * 100);
+    rotateX.set((0.5 - py) * TILT_MAX);
+    rotateY.set((px - 0.5) * TILT_MAX);
+  }
+
+  function onLeave() {
+    x.set(50);
+    y.set(50);
+    rotateX.set(0);
+    rotateY.set(0);
   }
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={() => {
-        x.set(50);
-        y.set(50);
-      }}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 400, damping: 28 }}
-      className={`group relative overflow-hidden rounded-glass glass-panel ${className}`}
-    >
+    <div style={{ perspective: "800px" }}>
       <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background }}
-      />
-      <div className="pointer-events-none absolute inset-0 rounded-glass opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 40%, transparent 60%, rgba(0,122,255,0.08) 100%)",
-        }}
-      />
-      <div className="relative z-10">{children}</div>
-    </motion.div>
+        ref={ref}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className={`group relative overflow-hidden rounded-glass glass-panel ${className}`}
+      >
+        <motion.div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{ background }}
+        />
+        <div className="pointer-events-none absolute inset-0 rounded-glass opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 40%, transparent 60%, rgba(0,122,255,0.08) 100%)",
+          }}
+        />
+        <div className="relative z-10">{children}</div>
+      </motion.div>
+    </div>
   );
 }

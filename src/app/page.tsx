@@ -30,10 +30,10 @@ export default function Home() {
       <section className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
-            <h2 className="text-3xl font-bold md:text-4xl">
-              Our Framework:{" "}
-              <span className="text-gradient-blue">Diagnose. Build. Optimise.</span>
-            </h2>
+            <h2 className="text-3xl font-bold md:text-4xl">Our Framework</h2>
+            <p className="mt-3 text-2xl font-semibold text-gradient-blue md:text-3xl">
+              Diagnose. Build. Optimise.
+            </p>
 
             <div className="mt-16 space-y-14">
               {[
@@ -63,10 +63,10 @@ export default function Home() {
                   Operators, Not Vendors.
                 </h3>
                 <p className="mt-3 leading-relaxed text-apex-muted">
-                  We act as operators inside your business — owning revenue systems,
+                  We act as operators inside your business, owning revenue systems,
                   team performance, and operational scale.
                 </p>
-                <p className="mt-4 font-medium text-white/90">
+                <p className="mt-4 text-2xl font-bold text-gradient-blue md:text-3xl">
                   Better systems. Better decisions. Better results.
                 </p>
               </div>
@@ -107,11 +107,11 @@ export default function Home() {
       {/* Fit */}
       <section className="apex-section">
         <div className="apex-container-wide">
-          <div className="apex-container">
+          <div className="mx-auto max-w-4xl">
             <div className="grid gap-16 md:grid-cols-2">
-              <div>
+              <div className="text-right">
                 <h2 className="text-3xl font-bold md:text-4xl">Who This Is For</h2>
-                <ul className="mt-8 space-y-4 text-right text-apex-muted md:text-lg">
+                <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>High-ticket businesses with proven demand</li>
                   <li>
                     Founders looking to scale sales beyond founder-led closing
@@ -121,7 +121,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <div>
+              <div className="text-left">
                 <h2 className="text-3xl font-bold md:text-4xl">This Is Not For</h2>
                 <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>Early-stage ideas without validation</li>
@@ -141,7 +141,7 @@ export default function Home() {
       {/* CTA */}
       <section className="apex-section">
         <div className="apex-container-wide">
-          <div className="apex-container">
+          <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold md:text-5xl">
               Build a revenue engine that runs without you
             </h2>
@@ -161,7 +161,7 @@ export default function Home() {
 
       <footer className="border-t border-white/10">
         <div className="apex-container-wide py-10">
-          <div className="apex-container flex flex-col gap-2 text-sm text-apex-muted sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 text-sm text-apex-muted sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Apex Growth Operations</p>
             <a
               href="mailto:daniel@apexgrowth.net"

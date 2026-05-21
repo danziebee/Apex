@@ -27,30 +27,38 @@ export function HeroVSL() {
         transformPerspective: 1400,
         transformOrigin: "50% 50%",
         transformStyle: "preserve-3d",
+        rotateX: 12,
+        y: 60,
+        scale: 0.92,
+        opacity: 0.4,
       });
 
-      gsap.fromTo(
-        videoPlane,
-        {
-          rotateX: 0,
-          y: 0,
-          scale: 1,
-          opacity: 1,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "bottom 10%",
+          scrub: 1.2,
         },
-        {
-          rotateX: 82,
-          y: -120,
-          scale: 0.72,
-          opacity: 0,
-          ease: "power2.in",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 20%",
-            end: "bottom 15%",
-            scrub: 1.2,
-          },
-        }
-      );
+      });
+
+      tl.to(videoPlane, {
+        rotateX: 0,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.4,
+      });
+
+      tl.to(videoPlane, {
+        rotateX: 72,
+        y: -100,
+        scale: 0.72,
+        opacity: 0,
+        ease: "power2.in",
+        duration: 0.6,
+      });
     }, section);
 
     return () => ctx.revert();
@@ -66,23 +74,23 @@ export function HeroVSL() {
     >
       <div className="apex-container-wide">
         <div
-          className="apex-container flex justify-start"
+          className="mx-auto flex max-w-5xl justify-center"
           style={{ perspective: "1400px" }}
         >
-        <div
-          ref={videoPlaneRef}
-          className="relative aspect-video w-full overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 shadow-glass-lg backdrop-blur-sm"
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          <iframe
-            src={embedSrc}
-            title="Apex | Growth Operations"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-          />
-          <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/10" />
-        </div>
+          <div
+            ref={videoPlaneRef}
+            className="relative aspect-video w-full overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 shadow-glass-lg backdrop-blur-sm"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <iframe
+              src={embedSrc}
+              title="Apex | Growth Operations"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/10" />
+          </div>
         </div>
       </div>
     </section>

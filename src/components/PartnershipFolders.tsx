@@ -70,8 +70,8 @@ export function PartnershipFolders() {
         }}
         className="relative"
       >
-        {/* Tabs — move with the folder */}
-        <div className="flex items-end gap-1 pl-2">
+        {/* Tabs flush left with card */}
+        <div className="flex items-end gap-1">
           {partnerships.map((p, i) => {
             const isActive = i === activeIndex;
             const tabBlue = p.theme === "blue";
@@ -87,14 +87,14 @@ export function PartnershipFolders() {
                 className={`relative rounded-t-[1.25rem] px-6 py-3 text-sm font-semibold md:px-8 md:py-3.5 md:text-base ${
                   isActive
                     ? tabBlue
-                      ? "z-10 bg-apex-blue text-white"
-                      : "z-10 bg-apex-frost text-apex-frost-text"
+                      ? "z-10 border border-b-0 border-white/[0.12] bg-white/[0.08] text-white backdrop-blur-xl"
+                      : "z-10 border border-b-0 border-white/[0.15] bg-white/[0.12] text-white backdrop-blur-xl"
                     : tabBlue
-                      ? "bg-apex-frost/90 text-apex-blue backdrop-blur-md"
-                      : "bg-apex-blue/85 text-white/90 backdrop-blur-md"
+                      ? "border border-b-0 border-white/[0.06] bg-white/[0.03] text-white/60 backdrop-blur-md"
+                      : "border border-b-0 border-white/[0.06] bg-white/[0.03] text-white/60 backdrop-blur-md"
                 }`}
                 style={{
-                  marginBottom: isActive ? 0 : "-2px",
+                  marginBottom: isActive ? "-1px" : "-2px",
                 }}
               >
                 {p.tabLabel}
@@ -108,21 +108,21 @@ export function PartnershipFolders() {
           role="tabpanel"
           className={`relative overflow-hidden rounded-[2rem] rounded-tl-none px-8 py-9 md:px-11 md:py-11 ${
             isBlue
-              ? "bg-apex-blue text-white shadow-folder"
-              : "bg-apex-frost text-apex-frost-text shadow-folder"
+              ? "border border-white/[0.1] bg-white/[0.06] text-white shadow-folder backdrop-blur-xl"
+              : "border border-white/[0.12] bg-white/[0.09] text-white shadow-folder backdrop-blur-xl"
           }`}
         >
           <div
             className="pointer-events-none absolute inset-0"
             style={{
-              background: `radial-gradient(520px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(255,255,255,${isBlue ? 0.18 : 0.4}), transparent 52%)`,
+              background: `radial-gradient(520px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(${isBlue ? "0, 122, 255" : "100, 160, 255"}, 0.15), transparent 52%)`,
             }}
           />
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 42%, transparent 58%, rgba(0,0,0,0.06) 100%)",
+                "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 42%, transparent 58%, rgba(0,0,0,0.04) 100%)",
             }}
           />
 
@@ -157,11 +157,7 @@ export function PartnershipFolders() {
                 <h3 className="text-3xl font-bold tracking-tight md:text-4xl">
                   {active.title}
                 </h3>
-                <p
-                  className={`mt-4 max-w-2xl text-base leading-relaxed md:text-lg ${
-                    isBlue ? "text-white/90" : "text-apex-frost-text/85"
-                  }`}
-                >
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
                   {active.summary}
                 </p>
 
@@ -169,11 +165,7 @@ export function PartnershipFolders() {
                   {active.sections.map((section) => (
                     <div key={section.heading}>
                       <h4 className="text-lg font-bold">{section.heading}</h4>
-                      <p
-                        className={`mt-2 max-w-2xl leading-relaxed ${
-                          isBlue ? "text-white/85" : "text-apex-frost-text/80"
-                        }`}
-                      >
+                      <p className="mt-2 max-w-2xl leading-relaxed text-white/70">
                         {section.body}
                       </p>
                     </div>
