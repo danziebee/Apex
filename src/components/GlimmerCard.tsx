@@ -40,13 +40,13 @@ export function GlimmerCard({ children, className = "" }: GlimmerCardProps) {
   }
 
   return (
-    <div style={{ perspective: "800px" }}>
+    <div style={{ perspective: "800px" }} className="h-full">
       <motion.div
         ref={ref}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className={`group relative overflow-hidden rounded-glass glass-panel ${className}`}
+        className={`group relative h-full overflow-hidden rounded-glass glass-panel ${className}`}
       >
         {/* Blue glow that follows cursor */}
         <motion.div
@@ -66,7 +66,7 @@ export function GlimmerCard({ children, className = "" }: GlimmerCardProps) {
               "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 35%, transparent 65%, rgba(0,122,255,0.06) 100%)",
           }}
         />
-        <div className="relative z-10">{children}</div>
+        <div className="relative z-10 h-full">{children}</div>
       </motion.div>
     </div>
   );

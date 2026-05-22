@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero copy */}
-      <section className="apex-section !pt-4 !pb-4 md:!pt-6 md:!pb-6">
+      <section className="apex-section !pt-4 !pb-2 md:!pt-6 md:!pb-3">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
@@ -30,9 +30,11 @@ export default function Home() {
       <section className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
-            <h2 className="text-3xl font-bold md:text-4xl">Our Framework</h2>
-            <p className="mt-3 text-2xl font-semibold text-gradient-blue md:text-3xl">
-              Diagnose. Build. Optimise.
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Our Framework:</h2>
+            <p className="mt-1 text-2xl tracking-tight text-gradient-blue md:text-3xl">
+              <span className="font-extrabold">Diagnose</span>,{" "}
+              <span className="font-extrabold">Build</span>,{" "}
+              <span className="font-extrabold">Optimize</span>
             </p>
 
             <div className="mt-16 space-y-14">
@@ -66,7 +68,7 @@ export default function Home() {
                   We act as operators inside your business, owning revenue systems,
                   team performance, and operational scale.
                 </p>
-                <p className="mt-4 text-2xl font-bold text-gradient-blue md:text-3xl">
+                <p className="mt-4 font-bold leading-relaxed text-gradient-blue">
                   Better systems. Better decisions. Better results.
                 </p>
               </div>
@@ -79,7 +81,7 @@ export default function Home() {
       <section className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
-            <h2 className="text-4xl font-bold md:text-5xl">What we build.</h2>
+            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">What we build.</h2>
           </div>
           <div className="mt-12">
             <ServicesGrid />
@@ -91,7 +93,7 @@ export default function Home() {
       <section className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
-            <h2 className="text-4xl font-bold md:text-5xl">How We Work</h2>
+            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">How We Work</h2>
             <p className="mt-6 text-lg leading-relaxed text-apex-muted">
               Depending on your business model and stage, we partner in one of two
               ways: Either building and managing your revenue systems directly, or
@@ -110,7 +112,7 @@ export default function Home() {
           <div className="mx-auto max-w-4xl">
             <div className="grid gap-16 md:grid-cols-2">
               <div className="text-right">
-                <h2 className="text-3xl font-bold md:text-4xl">Who This Is For</h2>
+                <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Who This Is For</h2>
                 <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>High-ticket businesses with proven demand</li>
                   <li>
@@ -122,7 +124,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="text-left">
-                <h2 className="text-3xl font-bold md:text-4xl">This Is Not For</h2>
+                <h2 className="text-3xl font-bold tracking-tight md:text-4xl">This Is Not For</h2>
                 <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>Early-stage ideas without validation</li>
                   <li>
@@ -142,7 +144,7 @@ export default function Home() {
       <section className="apex-section">
         <div className="apex-container-wide">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold md:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
               Build a revenue engine that runs without you
             </h2>
             <div className="mt-10">

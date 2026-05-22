@@ -42,23 +42,23 @@ export function TeamSection() {
   return (
     <div className="space-y-4">
       {team.map((member) => (
-        <GlimmerCard key={member.name} className="p-4 md:p-5">
-          <div className="flex items-center gap-4 md:gap-5">
-            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-white/10 md:h-32 md:w-32">
+        <GlimmerCard key={member.name} className="p-5 md:p-6">
+          <div className="flex items-center gap-5 md:gap-6">
+            <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full border border-white/10 md:h-36 md:w-36">
               <Image
                 src={member.image}
                 alt={member.name}
                 fill
                 className="object-cover object-top"
-                sizes="128px"
+                sizes="144px"
               />
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="text-lg font-bold text-white md:text-xl">
+              <h3 className="text-xl font-bold text-white md:text-2xl">
                 {member.name}
               </h3>
-              <p className="text-sm text-apex-muted">{member.role}</p>
-              <p className="mt-2 text-sm leading-relaxed text-apex-muted/90 md:text-[0.9375rem]">
+              <p className="text-sm text-apex-muted md:text-base">{member.role}</p>
+              <p className="mt-2 text-sm leading-relaxed text-apex-muted/90 md:text-base">
                 {member.bio}
               </p>
               <div className="mt-3 inline-flex gap-1.5 rounded-pill border border-white/8 bg-black/25 px-2 py-1.5 backdrop-blur-md">

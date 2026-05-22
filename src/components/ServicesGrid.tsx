@@ -7,7 +7,7 @@ export function ServicesGrid() {
     <div className="grid gap-4 sm:grid-cols-2">
       {services.map((service) => (
         <GlimmerCard key={service.title} className="p-6 md:p-8">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center justify-between gap-4">
             <div>
               <h3 className="text-lg font-bold text-white md:text-xl">
                 {service.title}

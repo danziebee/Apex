@@ -1,4 +1,5 @@
-export const BOOK_CALL_URL = "https://tally.so/r/XxegxV";
+export const BOOK_CALL_URL = "/book";
+export const TALLY_FORM_URL = "https://tally.so/r/XxegxV";
 export const YOUTUBE_VIDEO_ID = "jgdmsjppcio";
 
 export const services = [
@@ -104,7 +105,7 @@ export const team = [
     name: "Daniel Barnard",
     role: "Founder & Operations Manager",
     bio: "Creative professional with a background in design, marketing, and sales. Now specialising in growth operations.",
-    image: "/team/james.png",
+    image: "/team/daniel.png",
     socials: [
       {
         type: "linkedin",
@@ -127,7 +128,7 @@ export const team = [
     name: "James Rice",
     role: "Sales Manager",
     bio: "A killer blend of experience in real estate, high-ticket sales, and live events. Driving premium revenue growth.",
-    image: "/team/daniel.png",
+    image: "/team/james.png",
     socials: [
       {
         type: "instagram",

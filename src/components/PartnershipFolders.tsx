@@ -86,15 +86,31 @@ export function PartnershipFolders() {
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className={`relative rounded-t-[1.25rem] px-6 py-3 text-sm font-semibold md:px-8 md:py-3.5 md:text-base ${
                   isActive
-                    ? "z-10 text-white bg-white/[0.08] backdrop-blur-xl"
-                    : "text-white/50 bg-white/[0.02] backdrop-blur-md hover:text-white/70"
+                    ? "z-20 text-white"
+                    : "text-white/50 hover:text-white/70"
                 }`}
-                style={{
-                  boxShadow: isActive
-                    ? "inset 0 0 0 1px rgba(255,255,255,0.1), inset 1.8px 3px 0 -2px rgba(255,255,255,0.15), inset -0.3px -1px 4px 0 rgba(0,0,0,0.08)"
-                    : "inset 0 0 0 1px rgba(255,255,255,0.05)",
-                  marginBottom: isActive ? "-1px" : "-2px",
-                }}
+                style={
+                  isActive
+                    ? {
+                        background: tabBlue ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.08)",
+                        backdropFilter: "blur(32px) saturate(160%)",
+                        WebkitBackdropFilter: "blur(32px) saturate(160%)",
+                        boxShadow: [
+                          "inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                          "inset 1px 0 0 0 rgba(255, 255, 255, 0.1)",
+                          "inset -1px 0 0 0 rgba(255, 255, 255, 0.1)",
+                          "inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.2)",
+                        ].join(", "),
+                        marginBottom: "-1px",
+                      }
+                    : {
+                        background: "rgba(255, 255, 255, 0.02)",
+                        backdropFilter: "blur(16px)",
+                        WebkitBackdropFilter: "blur(16px)",
+                        boxShadow: "inset 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                        marginBottom: "-2px",
+                      }
+                }
               >
                 {p.tabLabel}
               </motion.button>

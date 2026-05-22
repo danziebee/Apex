@@ -8,13 +8,13 @@ export function HeroVSL() {
 
   return (
     <section aria-label="Video introduction">
-      <ContainerScroll titleComponent={null}>
+      <ContainerScroll>
         <iframe
           src={embedSrc}
           title="Apex | Growth Operations"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="h-full w-full rounded-2xl"
+          className="h-full w-full"
         />
       </ContainerScroll>
     </section>
