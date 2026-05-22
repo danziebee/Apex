@@ -77,9 +77,15 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   }
 
-  /* Shared layout — matches Framework column */
+  /* Shared layout */
   .apex-section {
     @apply py-24 md:py-32;
+  }
+
+  .apex-section-surface {
+    background: var(--apex-surface);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   }
 
   /* Outer shell — tight padding, full width usage */
@@ -87,9 +93,9 @@ body {
     @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
   }
 
-  /* Text column — same left edge as Framework, not re-centered */
+  /* Text column — centered */
   .apex-container {
-    @apply w-full max-w-3xl text-left;
+    @apply mx-auto w-full max-w-3xl text-center;
   }
 
   /* Slow drifting blue glow */

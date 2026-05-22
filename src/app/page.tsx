@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <main>
       {/* Hero copy */}
-      <section className="apex-section !pt-4 !pb-2 md:!pt-6 md:!pb-3">
+      <section className="apex-section !pt-4 !pb-8 md:!pt-6 md:!pb-10">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
               Predictable growth,{" "}
               <span className="text-gradient-blue">built for you.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-apex-muted md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-apex-muted md:text-lg">
               We design predictable, scalable revenue engines powered by smart
               systems, high-performance teams, and offers built to convert.
             </p>
@@ -27,7 +27,7 @@ export default function Home() {
       <HeroVSL />
 
       {/* Framework */}
-      <section className="apex-section">
+      <section className="apex-section apex-section-surface">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Our Framework:</h2>
@@ -90,11 +90,11 @@ export default function Home() {
       </section>
 
       {/* Partnerships */}
-      <section className="apex-section">
+      <section className="apex-section apex-section-surface">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl">How We Work</h2>
-            <p className="mt-6 text-lg leading-relaxed text-apex-muted">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-apex-muted">
               Depending on your business model and stage, we partner in one of two
               ways: Either building and managing your revenue systems directly, or
               aligning on performance through a shared upside.
@@ -111,7 +111,7 @@ export default function Home() {
         <div className="apex-container-wide">
           <div className="mx-auto max-w-4xl">
             <div className="grid gap-16 md:grid-cols-2">
-              <div className="text-right">
+              <div className="text-center">
                 <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Who This Is For</h2>
                 <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>High-ticket businesses with proven demand</li>
@@ -123,7 +123,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <div className="text-left">
+              <div className="text-center">
                 <h2 className="text-3xl font-bold tracking-tight md:text-4xl">This Is Not For</h2>
                 <ul className="mt-8 space-y-4 text-apex-muted md:text-lg">
                   <li>Early-stage ideas without validation</li>
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="apex-section">
+      <section className="apex-section apex-section-surface">
         <div className="apex-container-wide">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
@@ -157,7 +157,9 @@ export default function Home() {
       {/* Team */}
       <section className="apex-section !pb-32">
         <div className="apex-container-wide">
-          <TeamSection />
+          <div className="mx-auto max-w-4xl">
+            <TeamSection />
+          </div>
         </div>
       </section>
 

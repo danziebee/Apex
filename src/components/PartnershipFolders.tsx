@@ -47,7 +47,7 @@ export function PartnershipFolders() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-4xl" style={{ perspective: "1200px" }}>
+    <div className="relative mx-auto w-full max-w-4xl" style={{ perspective: "1200px" }}>
       <div
         className="pointer-events-none absolute inset-0 translate-y-4 translate-x-2 rounded-[2rem] bg-apex-blue/15 blur-sm"
         aria-hidden
