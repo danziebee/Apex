@@ -59,7 +59,7 @@ export const partnerships = [
     tabLabel: "Build + Manage",
     title: "Build + Manage",
     summary:
-      "We design, implement, and take ownership of your revenue systems — then stay on to manage, optimise, and scale them over time.",
+      "We design, implement, and take ownership of your revenue systems, then stay on to manage, optimise, and scale them over time.",
     theme: "blue" as const,
     sections: [
       {
@@ -81,12 +81,12 @@ export const partnerships = [
     tabLabel: "Revenue Partnership",
     title: "Revenue Partnership",
     summary:
-      "We partner on performance — building and scaling your revenue engine in exchange for a share of the revenue it generates.",
+      "We partner on performance: building and scaling your revenue engine in exchange for a share of the revenue it generates.",
     theme: "frost" as const,
     sections: [
       {
         heading: "How it works:",
-        body: "We design and implement your core sales systems, then stay embedded to run and optimise them — aligned to the revenue they produce rather than a fixed fee alone.",
+        body: "We design and implement your core sales systems, then stay embedded to run and optimise them, aligned to the revenue they produce rather than a fixed fee alone.",
       },
       {
         heading: "What's Included:",

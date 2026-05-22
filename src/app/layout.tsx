@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Apex — Growth Operations",
+  title: "Apex | Growth Operations",
   description:
     "Predictable, scalable revenue engines powered by smart systems, high-performance teams, and offers built to convert.",
   openGraph: {
-    title: "Apex — Growth Operations",
+    title: "Apex | Growth Operations",
     siteName: "Apex",
   },
 };

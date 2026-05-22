@@ -88,12 +88,12 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   }
 
-  /* Outer shell — tight padding, full width usage */
+  /* Outer shell: tight padding, full width usage */
   .apex-container-wide {
     @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
   }
 
-  /* Text column — centered */
+  /* Text column: centered */
   .apex-container {
     @apply mx-auto w-full max-w-3xl text-center;
   }
