@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero copy */}
-      <section className="apex-section !pt-4 !pb-8 md:!pt-6 md:!pb-10">
+      <section className="apex-section !pt-4 !pb-14 md:!pt-6 md:!pb-20">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
