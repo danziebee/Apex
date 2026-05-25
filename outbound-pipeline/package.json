@@ -1,0 +1,20 @@
+{
+  "name": "apex-outbound-pipeline",
+  "version": "1.0.0",
+  "description": "Automated outbound lead generation pipeline for Apex Growth — aesthetic clinics",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "run-now": "node src/index.js --run-now",
+    "setup": "node src/setup.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
