@@ -52,8 +52,11 @@ async function fetchScrapedRecords() {
       page_size: 100,
       filter: {
         and: [
-          { property: 'pipeline_status', select: { equals: 'Scraped' } },
           { property: 'Website', url: { is_not_empty: true } },
+          {
+            property: 'Notes (Most Recent Interaction)',
+            rich_text: { contains: 'Pipeline: Scraped' },
+          },
         ],
       },
     });
@@ -182,36 +185,39 @@ function buildLocation(country, city) {
 }
 
 async function updateRecord(pageId, data, current) {
-  const properties = {
-    'enrichment_source': { select: { name: 'Apify' } },
-    'pipeline_status': { select: { name: 'Enriched' } },
-  };
+  const properties = {};
 
   if (data.phone && !current.phone) {
-    properties['Phone'] = { phone_number: data.phone };
+    properties['Business Phone'] = { phone_number: data.phone };
   }
   if (data.email && !current.email) {
-    properties['Work Email'] = { email: data.email };
+    properties['Company Email'] = { email: data.email };
   }
   if (data.linkedin && !current.linkedin) {
     properties['LinkedIn URL'] = { url: data.linkedin };
   }
-  if (data.address?.street && !current.address) {
-    const parts = [
-      data.address.street,
-      data.address.city,
-      data.address.state,
-    ].filter(Boolean);
-    properties['address'] = {
-      rich_text: [{ text: { content: parts.join(', ') } }],
-    };
-  }
   if (!current.location) {
     const location = buildLocation(data.address?.country, data.address?.city);
     if (location) {
-      properties['Location'] = { select: { name: location } };
+      properties['Location'] = {
+        rich_text: [{ text: { content: location } }],
+      };
     }
   }
+
+  const existingNotes = current.notes || '';
+  properties['Notes (Most Recent Interaction)'] = {
+    rich_text: [
+      {
+        text: {
+          content: existingNotes.replace(
+            '[Pipeline: Scraped]',
+            '[Pipeline: Enriched]'
+          ),
+        },
+      },
+    ],
+  };
 
   await notion.pages.update({ page_id: pageId, properties });
 }
@@ -277,11 +283,22 @@ async function enricher() {
         if (!data || (!data.phone && !data.email)) {
           stats.skipped++;
           try {
+            const skipNotes = prop(page, 'Notes (Most Recent Interaction)') || '';
             await notion.pages.update({
               page_id: page.id,
               properties: {
-                'enrichment_source': { select: { name: 'Apify' } },
-                'pipeline_status': { select: { name: 'Enriched' } },
+                'Notes (Most Recent Interaction)': {
+                  rich_text: [
+                    {
+                      text: {
+                        content: skipNotes.replace(
+                          '[Pipeline: Scraped]',
+                          '[Pipeline: Enriched]'
+                        ),
+                      },
+                    },
+                  ],
+                },
               },
             });
           } catch {}
@@ -291,11 +308,11 @@ async function enricher() {
 
         try {
           const current = {
-            phone: prop(page, 'Phone'),
-            email: prop(page, 'Work Email'),
+            phone: prop(page, 'Business Phone'),
+            email: prop(page, 'Company Email'),
             linkedin: prop(page, 'LinkedIn URL'),
-            address: prop(page, 'address'),
             location: prop(page, 'Location'),
+            notes: prop(page, 'Notes (Most Recent Interaction)'),
           };
 
           await updateRecord(page.id, data, current);

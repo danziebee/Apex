@@ -58,7 +58,6 @@ function normalizeClinicName(name) {
 }
 
 async function fetchExistingKeys() {
-  const placeIds = new Set();
   const domains = new Set();
   const names = new Set();
   let cursor;
@@ -69,12 +68,7 @@ async function fetchExistingKeys() {
       page_size: 100,
     });
     for (const page of res.results) {
-      const pid = page.properties['place_id']?.rich_text?.[0]?.text?.content;
-      if (pid) placeIds.add(pid);
-
-      const url =
-        page.properties['Website']?.url ||
-        page.properties['website']?.url;
+      const url = page.properties['Website']?.url;
       const d = domainFromUrl(url);
       if (d) domains.add(d);
 
@@ -82,19 +76,17 @@ async function fetchExistingKeys() {
         page.properties['Lead Name']?.title?.[0]?.text?.content ||
         page.properties['Company Name']?.rich_text?.[0]?.text?.content;
       const city =
-        page.properties['Location']?.select?.name ||
-        page.properties['city']?.rich_text?.[0]?.text?.content;
+        page.properties['Location']?.rich_text?.[0]?.text?.content;
       const key = normalizeClinicName(clinicName);
       if (key) names.add(key);
       if (key && city) names.add(`${key}|${city.toLowerCase().trim()}`);
     }
     cursor = res.has_more ? res.next_cursor : undefined;
   } while (cursor);
-  return { placeIds, domains, names };
+  return { domains, names };
 }
 
-function isDuplicate(existing, placeId, websiteUrl, clinicName, city) {
-  if (placeId && existing.placeIds.has(placeId)) return 'place_id';
+function isDuplicate(existing, websiteUrl, clinicName, city) {
   const d = domainFromUrl(websiteUrl);
   if (d && existing.domains.has(d)) return 'website';
   const norm = normalizeClinicName(clinicName);
@@ -104,8 +96,7 @@ function isDuplicate(existing, placeId, websiteUrl, clinicName, city) {
   return null;
 }
 
-function trackNewRecord(existing, placeId, websiteUrl, clinicName, city) {
-  if (placeId) existing.placeIds.add(placeId);
+function trackNewRecord(existing, websiteUrl, clinicName, city) {
   const d = domainFromUrl(websiteUrl);
   if (d) existing.domains.add(d);
   const norm = normalizeClinicName(clinicName);
@@ -147,26 +138,29 @@ function buildLocation(country, city) {
 
 async function writeToNotion(lead) {
   const location = buildLocation(lead.country, lead.city);
+  const noteParts = [`Source: Google Places`];
+  if (lead.google_rating) noteParts.push(`Rating: ${lead.google_rating}`);
+  if (lead.address) noteParts.push(`Address: ${lead.address}`);
+  noteParts.push(`[Pipeline: Scraped]`);
+
   const properties = {
     'Lead Name': { title: [{ text: { content: lead.clinic_name || '' } }] },
     'Company Name': {
       rich_text: [{ text: { content: lead.clinic_name || '' } }],
     },
     'Website': lead.website ? { url: lead.website } : { url: null },
-    'address': {
-      rich_text: [{ text: { content: lead.address || '' } }],
+    'Location': location
+      ? { rich_text: [{ text: { content: location } }] }
+      : undefined,
+    'Industry': {
+      rich_text: [{ text: { content: lead.niche || '' } }],
     },
-    'Location': location ? { select: { name: location } } : undefined,
-    'Google Rating': { number: lead.google_rating || null },
-    'niche': { select: { name: lead.niche } },
-    'place_id': {
-      rich_text: [{ text: { content: lead.place_id } }],
+    'Notes (Most Recent Interaction)': {
+      rich_text: [{ text: { content: noteParts.join(' | ') } }],
     },
-    'pipeline_status': { select: { name: 'Scraped' } },
-    'Source': { select: { name: 'Google Places' } },
   };
   if (lead.phone_raw) {
-    properties['Phone'] = { phone_number: lead.phone_raw };
+    properties['Business Phone'] = { phone_number: lead.phone_raw };
   }
   Object.keys(properties).forEach((k) => {
     if (properties[k] === undefined) delete properties[k];
@@ -181,7 +175,7 @@ async function scraper() {
   console.log('\n=== SCRAPER: Google Places ===');
   const existing = await fetchExistingKeys();
   console.log(
-    `Existing records: ${existing.placeIds.size} place_ids, ${existing.domains.size} domains, ${existing.names.size} names`
+    `Existing records: ${existing.domains.size} domains, ${existing.names.size} names`
   );
 
   const stats = {
@@ -214,7 +208,6 @@ async function scraper() {
 
           const dupReason = isDuplicate(
             existing,
-            placeId,
             websiteUrl,
             clinicName,
             parsedCity
@@ -247,7 +240,6 @@ async function scraper() {
             await writeToNotion(lead);
             trackNewRecord(
               existing,
-              placeId,
               websiteUrl,
               clinicName,
               parsedCity

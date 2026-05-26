@@ -6,20 +6,7 @@ const enricher = require('./enricher');
 
 const CRON_SCHEDULE = process.env.CRON_SCHEDULE || '0 6 * * *';
 
-async function debugSchema() {
-  const { Client } = require('@notionhq/client');
-  const notion = new Client({ auth: process.env.NOTION_TOKEN });
-  const db = await notion.databases.retrieve({ database_id: process.env.NOTION_DATABASE_ID });
-  console.log('\n=== DATABASE SCHEMA ===');
-  console.log(`Title: ${db.title?.map(t => t.plain_text).join('')}`);
-  for (const [name, prop] of Object.entries(db.properties)) {
-    console.log(`  "${name}" => ${prop.type}`);
-  }
-  console.log('=== END SCHEMA ===\n');
-}
-
 async function runPipeline() {
-  await debugSchema();
   const startTime = Date.now();
   console.log('='.repeat(60));
   console.log(`APEX LEAD PIPELINE — ${new Date().toISOString()}`);
