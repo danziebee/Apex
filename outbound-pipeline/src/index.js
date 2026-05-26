@@ -6,7 +6,29 @@ const enricher = require('./enricher');
 
 const CRON_SCHEDULE = process.env.CRON_SCHEDULE || '0 6 * * *';
 
+async function debugNotionAccess() {
+  const { Client } = require('@notionhq/client');
+  const notion = new Client({ auth: process.env.NOTION_TOKEN });
+  console.log('\n=== DEBUG: Notion Integration Access ===');
+  console.log(`Configured DB ID: ${process.env.NOTION_DATABASE_ID}`);
+  try {
+    const res = await notion.search({ filter: { property: 'object', value: 'database' } });
+    console.log(`Databases accessible: ${res.results.length}`);
+    for (const db of res.results) {
+      const title = db.title?.map(t => t.plain_text).join('') || '(untitled)';
+      console.log(`  - "${title}" => ${db.id}`);
+    }
+    if (res.results.length === 0) {
+      console.log('  No databases found. Integration has no database access.');
+    }
+  } catch (err) {
+    console.error(`  Notion search failed: ${err.message}`);
+  }
+  console.log('=== END DEBUG ===\n');
+}
+
 async function runPipeline() {
+  await debugNotionAccess();
   const startTime = Date.now();
   console.log('='.repeat(60));
   console.log(`APEX LEAD PIPELINE — ${new Date().toISOString()}`);
