@@ -26,16 +26,18 @@ export default function Home() {
 
       <HeroVSL />
 
-      {/* Framework */}
-      <section className="apex-section apex-section-surface">
+      {/* Framework - left-aligned ribbon */}
+      <section id="about" className="apex-section">
         <div className="apex-container-wide">
-          <div className="apex-container">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Our Framework:</h2>
-            <p className="mt-1 text-2xl tracking-tight text-gradient-blue md:text-3xl">
-              <span className="font-extrabold">Diagnose</span>,{" "}
-              <span className="font-extrabold">Build</span>,{" "}
-              <span className="font-extrabold">Optimize</span>
-            </p>
+          <div className="max-w-3xl">
+            <div className="mb-10 inline-block rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-xs font-semibold uppercase tracking-widest text-apex-blue backdrop-blur-sm">
+              Our Framework
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              <span className="text-gradient-blue">Diagnose</span>,{" "}
+              <span className="text-gradient-blue">Build</span>,{" "}
+              <span className="text-gradient-blue">Optimize</span>
+            </h2>
 
             <div className="mt-16 space-y-14">
               {[
@@ -78,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="apex-section">
+      <section id="services" className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl">What we build.</h2>
@@ -90,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* Partnerships */}
-      <section className="apex-section apex-section-surface">
+      <section id="portfolio" className="apex-section">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl">How We Work</h2>
@@ -141,7 +143,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="apex-section apex-section-surface">
+      <section className="apex-section">
         <div className="apex-container-wide">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
@@ -163,10 +165,10 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10">
+      <footer id="contact" className="border-t border-white/10">
         <div className="apex-container-wide py-10">
           <div className="flex flex-col gap-2 text-sm text-apex-muted sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Apex Growth Operations</p>
+            <p>&copy; {new Date().getFullYear()} Apex Growth Operations</p>
             <a
               href="mailto:daniel@apexgrowth.net"
               className="transition-colors hover:text-white"
