@@ -40,7 +40,7 @@ export const ContainerScroll = ({
           </div>
         </motion.div>
       </div>
-      <div className="h-20 md:h-28" aria-hidden />
+      <div className="h-10 md:h-14" aria-hidden />
     </div>
   );
 };

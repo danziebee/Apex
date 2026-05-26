@@ -25,9 +25,9 @@ export function PillButton({
     ].join(" "),
     blue: [
       "text-white",
-      "bg-gradient-to-b from-apex-blue/90 to-apex-blue/70 backdrop-blur-2xl",
-      "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_0_0_1px_rgba(255,255,255,0.12),inset_0_-1px_2px_0_rgba(0,0,0,0.2),inset_1.8px_3px_0_-2px_rgba(255,255,255,0.2),0_2px_8px_rgba(0,122,255,0.3),0_12px_40px_rgba(0,122,255,0.25),0_0_80px_-12px_rgba(0,122,255,0.15)]",
-      "hover:from-apex-blue/95 hover:to-apex-blue/80 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),inset_0_0_0_1px_rgba(255,255,255,0.18),inset_0_-1px_2px_0_rgba(0,0,0,0.15),0_4px_12px_rgba(0,122,255,0.4),0_16px_48px_rgba(0,122,255,0.35),0_0_100px_-10px_rgba(0,122,255,0.2)]",
+      "bg-gradient-to-b from-apex-blue/30 to-apex-blue/15 backdrop-blur-2xl",
+      "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),inset_0_0_0_1px_rgba(0,122,255,0.25),0_2px_8px_rgba(0,122,255,0.12),0_8px_24px_rgba(0,122,255,0.08)]",
+      "hover:from-apex-blue/40 hover:to-apex-blue/20 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),inset_0_0_0_1px_rgba(0,122,255,0.35),0_4px_12px_rgba(0,122,255,0.18),0_12px_32px_rgba(0,122,255,0.12)]",
     ].join(" "),
   };
 

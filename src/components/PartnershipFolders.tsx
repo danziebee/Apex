@@ -4,7 +4,7 @@ import { partnerships } from "@/lib/content";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useRef, useState } from "react";
 
-type TiltState = { rx: number; ry: number; highlightX: number; highlightY: number };
+type TiltState = { rx: number; ry: number; highlightX: number; highlightY: number; active: boolean };
 
 const TILT_MAX = 4;
 
@@ -16,6 +16,7 @@ export function PartnershipFolders() {
     ry: 0,
     highlightX: 50,
     highlightY: 50,
+    active: false,
   });
   const unitRef = useRef<HTMLDivElement>(null);
 
@@ -39,12 +40,15 @@ export function PartnershipFolders() {
       ry: (x - 0.5) * TILT_MAX * 2,
       highlightX: x * 100,
       highlightY: y * 100,
+      active: true,
     });
   }, []);
 
   const resetTilt = useCallback(() => {
-    setTilt({ rx: 0, ry: 0, highlightX: 50, highlightY: 50 });
+    setTilt({ rx: 0, ry: 0, highlightX: 50, highlightY: 50, active: false });
   }, []);
+
+  const highlightOpacity = tilt.active ? 1 : 0;
 
   return (
     <div className="relative mx-auto w-full max-w-4xl" style={{ perspective: "1200px" }}>
@@ -141,14 +145,16 @@ export function PartnershipFolders() {
           }}
         >
           <div
-            className="pointer-events-none absolute inset-0"
+            className="pointer-events-none absolute inset-0 transition-opacity duration-500"
             style={{
+              opacity: highlightOpacity,
               background: `radial-gradient(520px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(${isBlue ? "0, 122, 255" : "100, 160, 255"}, 0.15), transparent 52%)`,
             }}
           />
           <div
-            className="pointer-events-none absolute inset-0"
+            className="pointer-events-none absolute inset-0 transition-opacity duration-500"
             style={{
+              opacity: highlightOpacity,
               background: `radial-gradient(400px circle at ${tilt.highlightX}% ${tilt.highlightY}%, rgba(255, 255, 255, 0.08), transparent 50%)`,
             }}
           />

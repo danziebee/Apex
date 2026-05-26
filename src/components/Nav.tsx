@@ -5,8 +5,8 @@ import { PillButton } from "./PillButton";
 const navLinks = [
   { label: "About Us", href: "#about" },
   { label: "Our Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact Us", href: BOOK_CALL_URL },
 ];
 
 export function Nav() {

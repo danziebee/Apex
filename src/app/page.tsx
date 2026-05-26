@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero copy */}
-      <section className="apex-section !pt-4 !pb-14 md:!pt-6 md:!pb-20">
+      <section className="apex-section !pt-10 !pb-14 md:!pt-14 md:!pb-20">
         <div className="apex-container-wide">
           <div className="apex-container">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
@@ -33,10 +33,8 @@ export default function Home() {
             <div className="mb-10 inline-block rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-xs font-semibold uppercase tracking-widest text-apex-blue backdrop-blur-sm">
               Our Framework
             </div>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              <span className="text-gradient-blue">Diagnose</span>,{" "}
-              <span className="text-gradient-blue">Build</span>,{" "}
-              <span className="text-gradient-blue">Optimize</span>
+            <h2 className="text-3xl font-bold tracking-tight text-gradient-blue md:text-4xl">
+              Diagnose, Build, Optimize
             </h2>
 
             <div className="mt-16 space-y-14">
@@ -70,7 +68,7 @@ export default function Home() {
                   We act as operators inside your business, owning revenue systems,
                   team performance, and operational scale.
                 </p>
-                <p className="mt-4 font-bold leading-relaxed text-gradient-blue">
+                <p className="mt-4 font-bold leading-relaxed text-apex-muted">
                   Better systems. Better decisions. Better results.
                 </p>
               </div>
@@ -92,11 +90,11 @@ export default function Home() {
       </section>
 
       {/* Partnerships */}
-      <section id="portfolio" className="apex-section">
+      <section className="apex-section">
         <div className="apex-container-wide">
-          <div className="apex-container">
+          <div className="max-w-3xl">
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl">How We Work</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-apex-muted">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-apex-muted">
               Depending on your business model and stage, we partner in one of two
               ways: Either building and managing your revenue systems directly, or
               aligning on performance through a shared upside.
