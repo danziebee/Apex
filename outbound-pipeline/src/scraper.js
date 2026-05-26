@@ -16,6 +16,12 @@ const SEARCH_QUERIES = [
   { template: 'hair transplant clinic', niche: 'Aesthetic Clinic' },
 ];
 
+const ICP_BY_NICHE = {
+  'MedSpa': 'Tier 1',
+  'Aesthetic Clinic': 'Tier 1',
+  'Dental': 'Tier 2',
+};
+
 const CITIES = [
   { name: 'Johannesburg', country: 'South Africa' },
   { name: 'Cape Town', country: 'South Africa' },
@@ -155,6 +161,9 @@ async function writeToNotion(lead) {
     'Industry': {
       rich_text: [{ text: { content: lead.niche || '' } }],
     },
+    'ICP': ICP_BY_NICHE[lead.niche]
+      ? { select: { name: ICP_BY_NICHE[lead.niche] } }
+      : undefined,
     'Notes (Most Recent Interaction)': {
       rich_text: [{ text: { content: noteParts.join(' | ') } }],
     },

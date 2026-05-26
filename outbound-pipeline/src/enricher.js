@@ -8,6 +8,12 @@ const APIFY_TOKEN = process.env.APIFY_TOKEN || process.env.APIFY_API_TOKEN;
 const BATCH_SIZE = parseInt(process.env.ENRICHER_BATCH_SIZE, 10) || 25;
 const DAILY_CAP = parseInt(process.env.ENRICHER_DAILY_CAP, 10) || 150;
 
+const ICP_BY_INDUSTRY = {
+  'MedSpa': 'Tier 1',
+  'Aesthetic Clinic': 'Tier 1',
+  'Dental': 'Tier 2',
+};
+
 function prop(page, name) {
   const p = page.properties[name];
   if (!p) return null;
@@ -196,6 +202,9 @@ async function updateRecord(pageId, data, current) {
   if (data.linkedin && !current.linkedin) {
     properties['LinkedIn URL'] = { url: data.linkedin };
   }
+  if (!current.icp && current.industry && ICP_BY_INDUSTRY[current.industry]) {
+    properties['ICP'] = { select: { name: ICP_BY_INDUSTRY[current.industry] } };
+  }
   if (!current.location) {
     const location = buildLocation(data.address?.country, data.address?.city);
     if (location) {
@@ -312,6 +321,8 @@ async function enricher() {
             email: prop(page, 'Company Email'),
             linkedin: prop(page, 'LinkedIn URL'),
             location: prop(page, 'Location'),
+            industry: prop(page, 'Industry'),
+            icp: prop(page, 'ICP'),
             notes: prop(page, 'Notes (Most Recent Interaction)'),
           };
 
