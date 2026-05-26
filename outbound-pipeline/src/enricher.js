@@ -60,7 +60,7 @@ async function fetchScrapedRecords() {
         and: [
           { property: 'Website', url: { is_not_empty: true } },
           {
-            property: 'Notes (Most Recent Interaction)',
+            property: 'Notes',
             rich_text: { contains: 'Pipeline: Scraped' },
           },
         ],
@@ -215,7 +215,7 @@ async function updateRecord(pageId, data, current) {
   }
 
   const existingNotes = current.notes || '';
-  properties['Notes (Most Recent Interaction)'] = {
+  properties['Notes'] = {
     rich_text: [
       {
         text: {
@@ -292,11 +292,11 @@ async function enricher() {
         if (!data || (!data.phone && !data.email)) {
           stats.skipped++;
           try {
-            const skipNotes = prop(page, 'Notes (Most Recent Interaction)') || '';
+            const skipNotes = prop(page, 'Notes') || '';
             await notion.pages.update({
               page_id: page.id,
               properties: {
-                'Notes (Most Recent Interaction)': {
+                'Notes': {
                   rich_text: [
                     {
                       text: {
@@ -323,7 +323,7 @@ async function enricher() {
             location: prop(page, 'Location'),
             industry: prop(page, 'Industry'),
             icp: prop(page, 'ICP'),
-            notes: prop(page, 'Notes (Most Recent Interaction)'),
+            notes: prop(page, 'Notes'),
           };
 
           await updateRecord(page.id, data, current);

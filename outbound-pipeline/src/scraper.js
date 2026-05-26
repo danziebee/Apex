@@ -144,7 +144,7 @@ function buildLocation(country, city) {
 
 async function writeToNotion(lead) {
   const location = buildLocation(lead.country, lead.city);
-  const noteParts = [`Source: Google Places`];
+  const noteParts = [];
   if (lead.google_rating) noteParts.push(`Rating: ${lead.google_rating}`);
   if (lead.address) noteParts.push(`Address: ${lead.address}`);
   noteParts.push(`[Pipeline: Scraped]`);
@@ -164,7 +164,10 @@ async function writeToNotion(lead) {
     'ICP': ICP_BY_NICHE[lead.niche]
       ? { select: { name: ICP_BY_NICHE[lead.niche] } }
       : undefined,
-    'Notes (Most Recent Interaction)': {
+    'Source': {
+      rich_text: [{ text: { content: 'Google Places' } }],
+    },
+    'Notes': {
       rich_text: [{ text: { content: noteParts.join(' | ') } }],
     },
   };
